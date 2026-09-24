@@ -16,7 +16,7 @@ A small cross-platform command-line tool for safely managing multiple Codex `aut
 - Switches another auth file to the standard `auth.json` name.
 - Renames any listed auth file, including the active `auth.json`.
 - Saves the `.codex` directory in `config.json` beside the executable.
-- Supports Windows and Linux with standalone binaries.
+- Provides standalone binaries for Windows x86-64, Linux x86-64, and Linux ARM64/aarch64.
 - Never reads, parses, or prints the contents of an auth file.
 - Never overwrites an existing file.
 - Shows planned changes and asks for confirmation before switching or renaming.
@@ -99,19 +99,28 @@ Download the binary for your operating system from the GitHub Releases page. Go 
 
 #### Windows x86-64
 
-Place `codex-auth-manager.exe` in a user-writable directory, then double-click it or run:
+Download `codex-auth-manager-windows-amd64.exe`, place it in a user-writable directory, then double-click it or run:
 
 ```powershell
-.\codex-auth-manager.exe
+.\codex-auth-manager-windows-amd64.exe
 ```
 
 #### Linux x86-64
 
-Grant execute permission once, then run:
+Download `codex-auth-manager-linux-amd64`, grant execute permission once, then run:
 
 ```sh
-chmod +x codex-auth-manager
-./codex-auth-manager
+chmod +x codex-auth-manager-linux-amd64
+./codex-auth-manager-linux-amd64
+```
+
+#### Linux ARM64/aarch64
+
+Download `codex-auth-manager-linux-arm64`, grant execute permission once, then run:
+
+```sh
+chmod +x codex-auth-manager-linux-arm64
+./codex-auth-manager-linux-arm64
 ```
 
 On first run, enter the absolute path to your `.codex` directory:
@@ -150,7 +159,7 @@ Build for Windows x86-64 from PowerShell:
 $env:GOOS = "windows"
 $env:GOARCH = "amd64"
 $env:CGO_ENABLED = "0"
-go build -trimpath -ldflags="-s -w" -o codex-auth-manager.exe .
+go build -trimpath -ldflags="-s -w" -o codex-auth-manager-windows-amd64.exe .
 ```
 
 Build for Linux x86-64 from PowerShell:
@@ -159,7 +168,16 @@ Build for Linux x86-64 from PowerShell:
 $env:GOOS = "linux"
 $env:GOARCH = "amd64"
 $env:CGO_ENABLED = "0"
-go build -trimpath -ldflags="-s -w" -o codex-auth-manager .
+go build -trimpath -ldflags="-s -w" -o codex-auth-manager-linux-amd64 .
+```
+
+Build for Linux ARM64/aarch64 from PowerShell:
+
+```powershell
+$env:GOOS = "linux"
+$env:GOARCH = "arm64"
+$env:CGO_ENABLED = "0"
+go build -trimpath -ldflags="-s -w" -o codex-auth-manager-linux-arm64 .
 ```
 
 ---
@@ -172,7 +190,7 @@ go build -trimpath -ldflags="-s -w" -o codex-auth-manager .
 - 将选中的认证文件切换为标准的 `auth.json`。
 - 可以重命名列表中的任意认证文件，包括当前使用的 `auth.json`。
 - 将 `.codex` 路径保存在可执行文件旁边的 `config.json` 中。
-- 提供可独立运行的 Windows 和 Linux 程序。
+- 提供可独立运行的 Windows x86-64、Linux x86-64 和 Linux ARM64/aarch64 程序。
 - 不读取、不解析、也不打印认证文件的内容。
 - 绝不覆盖已有文件。
 - 切换或重命名前会展示变更内容，并要求用户确认。
@@ -255,19 +273,28 @@ Continue? (Y/N): Y
 
 #### Windows x86-64
 
-将 `codex-auth-manager.exe` 放入当前用户有写入权限的目录，然后双击运行，或在 PowerShell 中执行：
+下载 `codex-auth-manager-windows-amd64.exe`，将其放入当前用户有写入权限的目录，然后双击运行，或在 PowerShell 中执行：
 
 ```powershell
-.\codex-auth-manager.exe
+.\codex-auth-manager-windows-amd64.exe
 ```
 
 #### Linux x86-64
 
-首次运行前赋予执行权限：
+下载 `codex-auth-manager-linux-amd64`，首次运行前赋予执行权限：
 
 ```sh
-chmod +x codex-auth-manager
-./codex-auth-manager
+chmod +x codex-auth-manager-linux-amd64
+./codex-auth-manager-linux-amd64
+```
+
+#### Linux ARM64/aarch64
+
+下载 `codex-auth-manager-linux-arm64`，首次运行前赋予执行权限：
+
+```sh
+chmod +x codex-auth-manager-linux-arm64
+./codex-auth-manager-linux-arm64
 ```
 
 第一次启动时，需要输入 `.codex` 文件夹的绝对路径：
@@ -306,7 +333,7 @@ go vet ./...
 $env:GOOS = "windows"
 $env:GOARCH = "amd64"
 $env:CGO_ENABLED = "0"
-go build -trimpath -ldflags="-s -w" -o codex-auth-manager.exe .
+go build -trimpath -ldflags="-s -w" -o codex-auth-manager-windows-amd64.exe .
 ```
 
 在 PowerShell 中构建 Linux x86-64 版本：
@@ -315,5 +342,14 @@ go build -trimpath -ldflags="-s -w" -o codex-auth-manager.exe .
 $env:GOOS = "linux"
 $env:GOARCH = "amd64"
 $env:CGO_ENABLED = "0"
-go build -trimpath -ldflags="-s -w" -o codex-auth-manager .
+go build -trimpath -ldflags="-s -w" -o codex-auth-manager-linux-amd64 .
+```
+
+在 PowerShell 中构建 Linux ARM64/aarch64 版本：
+
+```powershell
+$env:GOOS = "linux"
+$env:GOARCH = "arm64"
+$env:CGO_ENABLED = "0"
+go build -trimpath -ldflags="-s -w" -o codex-auth-manager-linux-arm64 .
 ```
